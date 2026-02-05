@@ -1,17 +1,21 @@
 import os
 import shutil
 
-# Create subdirectories if they don't exist
-for i in range(1, 9):
-    subdir = f'{i}000-{i}999'
-    if not os.path.exists(subdir):
-        os.makedirs(subdir)
+for i in range(1, 10):
+    d = f'{i}000-{i}999'
+    if not os.path.exists(d):
+        os.makedirs(d)
 
-# Move files to the appropriate subdirectory
 for filename in os.listdir('.'):
-    if os.path.isfile(filename) and filename.endswith('.cpp'):
-        first_digit = filename[0]
-        if first_digit.isdigit():
-            subdir = f'{first_digit}000-{first_digit}999'
-            shutil.move(filename, os.path.join(subdir, filename))
+    if not os.path.isfile(filename) or not filename.endswith('.cpp'):
+        continue
+    if not filename[0].isdigit():
+        continue
 
+    subdir = f'{filename[0]}000-{filename[0]}999'
+    dst = os.path.join(subdir, filename)
+
+    if os.path.exists(dst):
+        os.remove(filename)   # 删除 ./ 下未整理文件
+    else:
+        shutil.move(filename, dst)
