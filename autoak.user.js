@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         AUTO AK MACHINE
+// @name         自动AK机
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description  LET'S AK BY CTJ!
